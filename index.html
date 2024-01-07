@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love you >.<</title>
+    <style>
+        body {
+            display: flex;
+            font-family: Duerer Gotisch;
+            background: rgb(10, 10, 10);
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            flex-direction: column;
+            overflow: hidden; /* Prevents the YAYs from overflowing the viewport */
+        }
+
+        .item {
+            text-align: center;
+            background: url("https://gifdb.com/images/high/emo-love-couple-hearts-jl1oaz4rkq43zzjs.gif");
+            width: 40vw;
+            height: 52vh;
+            border: 5px outset solid red;
+        }
+
+        .item1 {
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            border-radius: 35px;
+            border: 3px solid white;
+            font-family: GregorianFLF;
+            color: white;
+            font-size: 30px;
+            width: 25vw;
+            height: 20vh;
+            background: rgb(0, 0, 0);
+            border: 5px outset solid black;
+        }
+
+        .d {
+            width: 25vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: row;
+            gap: 15px;
+        }
+
+        .yes {
+            height: 5vh;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Staatliches;
+            font-size: 35px;
+            width: 45%;
+            background: black;
+            border: 2px solid white;
+        }
+
+        .no {
+            height: 5vh;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Staatliches;
+            font-size: 35px;
+            width: 45%;
+            background: black;
+            border: 2px solid white;
+        }
+
+        .yay {
+            position: absolute;
+            font-size: 10px;
+            pointer-events: none; /* Prevents the YAYs from blocking clicks on underlying elements */
+        }
+    </style>
+</head>
+<body>
+    <div class="item"></div>
+    <div class="item1">Would u love to be my VALENTINE?
+        <div class="d">
+            <div class="yes" onclick="shesaidyes()">YES!</div>
+            <div class="no" onclick="handleNoClick()">No...</div>
+        </div>
+    </div>
+
+    <script>
+        function handleNoClick() {
+            alert("niepoprawna odpowiedź uwu");
+        }
+
+        function shesaidyes() {
+            let item = document.querySelector(".item");
+            item.style.backgroundImage = "none";
+            item.textContent = "YAY";
+            item.style.color = "white";
+            item.style.fontSize = "200px";
+            item.style.fontFamily = "staatliches"; // Clear the content
+
+            for (let i = 0; i < 50; i++) {
+                createYay();
+            }
+        }
+
+        function createYay() {
+            let yay = document.createElement("div");
+            yay.classList.add("yay");
+            yay.textContent = "YAY!!!";
+            yay.style.fontSize = "10px";
+            yay.style.color = getRandomColor();
+            yay.style.left = getRandomPosition() + "px";
+            yay.style.top = getRandomPosition() + "px";
+
+            document.body.appendChild(yay);
+
+            // Automatically remove the YAY after a certain time
+            setTimeout(() => {
+                yay.remove();
+            }, 3000);
+        }
+
+        function getRandomColor() {
+            const randomColor = () => Math.floor(Math.random() * 256);
+            return `rgb(${randomColor()}, ${randomColor()}, ${randomColor()})`;
+        }
+
+        function getRandomPosition() {
+            return Math.floor(Math.random() * window.innerWidth);
+        }
+    </script>
+</body>
+</html>
