@@ -51,21 +51,10 @@
             gap: 15px;
         }
 
-        .yes {
-            height: 5vh;
-            text-align: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: Staatliches;
-            font-size: 35px;
-            width: 45%;
-            background: black;
-            border: 2px solid white;
-        }
-
+        .yes,
         .no {
             height: 5vh;
+            background:rgb(30,30,30);
             text-align: center;
             display: flex;
             justify-content: center;
@@ -73,13 +62,34 @@
             font-family: Staatliches;
             font-size: 35px;
             width: 45%;
-            background: black;
             border: 2px solid white;
+            position: relative;
+            overflow: hidden;
+            color: white;
+        }
+
+        .yes:hover {
+            background: pink;
+        }
+
+        .no:hover {
+            background: black;
+        }
+
+        .yes:hover span,
+        .no:hover span {
+            transform: translateX(100%);
+        }
+
+        .yes span,
+        .no span {
+            display: inline-block;
+            transition: transform 0.5s ease-in-out;
         }
 
         .yay {
             position: absolute;
-            font-size: 10px;
+            font-size: 20px;
             pointer-events: none; /* Prevents the YAYs from blocking clicks on underlying elements */
         }
     </style>
@@ -88,8 +98,8 @@
     <div class="item"></div>
     <div class="item1">Would u love to be my VALENTINE?
         <div class="d">
-            <div class="yes" onclick="shesaidyes()">YES!</div>
-            <div class="no" onclick="handleNoClick()">No...</div>
+            <div class="yes" onclick="shesaidyes()"><span>YES!</span></div>
+            <div class="no" onclick="handleNoClick()"><span>No...</span></div>
         </div>
     </div>
 
@@ -101,7 +111,7 @@
         function shesaidyes() {
             let item = document.querySelector(".item");
             item.style.backgroundImage = "none";
-            item.textContent = "YAY";
+            item.textContent = "YAY, LOVE U SO MUCH!!";
             item.style.color = "white";
             item.style.fontSize = "200px";
             item.style.fontFamily = "staatliches"; // Clear the content
@@ -115,7 +125,7 @@
             let yay = document.createElement("div");
             yay.classList.add("yay");
             yay.textContent = "YAY!!!";
-            yay.style.fontSize = "10px";
+            yay.style.fontSize = "20px";
             yay.style.color = getRandomColor();
             yay.style.left = getRandomPosition() + "px";
             yay.style.top = getRandomPosition() + "px";
